@@ -5,10 +5,8 @@ let isPrime (n:int64) =
 
 let step(g:int64, m:int64, n:int64): int64 list =
     let primes = [m..n] |> List.filter isPrime 
-    match [0..primes.Length - 2] |> List.tryFind (fun x -> primes.[x+1] - primes.[x] = g) with
-    | Some value -> [int64(primes.[value]); int64(primes.[value + 1])]
+    match primes |> List.tryFind (fun x -> primes |> List.contains (x + g)) with
+    | Some value -> [value; value + g]
     | None -> []
-    
 
-
-step (6L, 100L, 108L)
+step (2L, 2L, 22L)
