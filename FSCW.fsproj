@@ -6,5 +6,6 @@
   <ItemGroup>
     <Compile Include="Program.fs" />
     <Compile Include="Clock.fs" />
+    <Compile Include="5ky/JosephusSurvivor.fs" />
   </ItemGroup>
 </Project>
