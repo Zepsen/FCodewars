@@ -1,12 +1,18 @@
-let dis m = 
-    [1..m-1] 
-    |> List.sumBy (fun el -> if m % el = 0 then el else 0) 
+open System
+
+let dis (m:int) = 
+    [2..(int32(Math.Sqrt(float m)))] 
+    |> List.sumBy (fun el -> if m % el = 0 
+                                then if el = m / el 
+                                     then el
+                                     else el + m / el
+                             else 0) 
 
 let test n =
     let f1 = dis n
     if f1 > n then 
-        let f2 = dis (f1 - 1)    
-        (n + 1 = f2, (f2 - 1, f1 - 1))
+        let f2 = dis f1    
+        (n = f2, (f2, f1))
     else (false, (0, 0))
 
 let buddy (start: int) (nd: int): (int * int) option = // your code
@@ -18,4 +24,3 @@ let buddy (start: int) (nd: int): (int * int) option = // your code
 
 buddy 10 50
 
-test 48
