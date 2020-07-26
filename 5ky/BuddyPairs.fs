@@ -1,14 +1,19 @@
 let dis m = 
     [1..m-1] 
-    |> List.filter (fun el -> m % el = 0) 
-    |> List.sum 
+    |> List.sumBy (fun el -> if m % el = 0 then el else 0) 
 
 let test n =
-    n + 1 = dis ((dis n) - 1)
+    let f1 = dis n
+    if f1 > n then 
+        let f2 = dis (f1 - 1)    
+        n + 1 = f2
+    else false
 
 let buddy (start: int) (nd: int): (int * int) option = // your code
     match [start..nd] |> List.tryFind test with
-    | Some res -> Some(res, dis res)
+    | Some res -> Some(res, dis res - 1)
     | _ -> None
 
-buddy 1081130 1103735
+buddy 10 50
+
+test 48
