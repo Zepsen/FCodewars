@@ -1,12 +1,14 @@
 open System
 
+let tryDis n m = 
+    if m % n = 0 then 
+        if n = m / n then n
+        else n + m / n
+    else 0
+
 let dis (m:int) = 
     [2..(int32(Math.Sqrt(float m)))] 
-    |> List.sumBy (fun el -> if m % el = 0 
-                                then if el = m / el 
-                                     then el
-                                     else el + m / el
-                             else 0) 
+    |> List.sumBy (fun el -> tryDis el m) 
 
 let test n =
     let f1 = dis n
