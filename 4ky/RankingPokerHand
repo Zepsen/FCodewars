@@ -1,0 +1,8 @@
+type Result =
+| Win = 0 
+| Loss = 1
+| Tie = 2
+       
+type Pokerhand (hand: String) =
+    member this.compareWith (pokerhand: Pokerhand) = 
+       Result.Tie
